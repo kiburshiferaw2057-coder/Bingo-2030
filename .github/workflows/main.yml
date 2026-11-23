@@ -15,10 +15,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - run: |
-          yes | sdkmanager --licenses || true
-          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
-          chmod +x gradlew || true
-          ./gradlew assembleDebug || gradle assembleDebug
+          chmod +x gradlew
+          ./gradlew assembleDebug --stacktrace
       - uses: actions/upload-artifact@v4
         with:
           name: bingo-et-apk
