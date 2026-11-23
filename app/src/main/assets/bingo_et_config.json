@@ -1,0 +1,60 @@
+{
+  "app_name": "BINGO ET",
+  "version_name": "3.0",
+  "version_code": 30,
+  "package_name": "com.bingoet.v3",
+  "account_holder": "kibur shiferaw kassa",
+  "theme_color_primary": "#0A58CA",
+  "theme_color_dark": "#063A8A",
+  "theme_color_accent": "#228BE6",
+  "payment_methods": {
+    "telebirr": {
+      "enabled": true,
+      "accounts": [
+        "0941705946",
+        "0912341486"
+      ],
+      "account_holder": "kibur shiferaw kassa",
+      "currency": "ETB"
+    },
+    "cbe": {
+      "enabled": true,
+      "account": "1000058081624",
+      "account_holder": "kibur shiferaw kassa",
+      "currency": "ETB"
+    },
+    "boa": {
+      "enabled": true,
+      "account": "82323805",
+      "account_holder": "kibur shiferaw kassa",
+      "currency": "ETB"
+    }
+  },
+  "display_rules": {
+    "show_balance_in_birr": true,
+    "hide_80_percent_payment_metric": true,
+    "hide_countdown_alarm_icon": true,
+    "round_interval_seconds": 120,
+    "selectable_card_range": [
+      1,
+      600
+    ],
+    "game_modes": [
+      {
+        "id": "classic_bingo_et",
+        "name": "Classic Bingo (5 Lines)",
+        "lines_to_win": 5
+      },
+      {
+        "id": "short_3_line",
+        "name": "Short Bingo (3 Line)",
+        "lines_to_win": 3
+      }
+    ],
+    "supported_languages": [
+      "en",
+      "am",
+      "om"
+    ]
+  }
+}
