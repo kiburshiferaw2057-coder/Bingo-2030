@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BINGO ET — Mobile & Web Online</title>
+  <style>
+    :root {
+      --blue-primary: #0a58ca;
+      --blue-dark: #063a8a;
+      --blue-light: #3b82f6;
+      --blue-bg: #eff6ff;
+      --white: #ffffff;
+      --text: #0f172a;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--blue-bg);
+      color: var(--text);
+    }
+    header {
+      background: linear-gradient(135deg, var(--blue-primary), var(--blue-dark));
+      color: var(--white);
+      padding: 18px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .container {
+      max-width: 920px;
+      margin: 18px auto;
+      padding: 0 16px;
+      display: grid;
+      gap: 14px;
+    }
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 4px 14px rgba(10, 88, 202, 0.08);
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    button, select, input {
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      font-size: 15px;
+    }
+    button.primary {
+      background: var(--blue-primary);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button.secondary {
+      background: var(--blue-light);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .grid-5x5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      max-width: 380px;
+      margin-top: 12px;
+    }
+    .cell {
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      background: var(--blue-bg);
+      border: 2px solid var(--blue-primary);
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .cell.marked {
+      background: var(--blue-primary);
+      color: var(--white);
+    }
+    .timer {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--blue-primary);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="row">
+      <img src="../assets/icon/bingo_et_icon_1024.png" alt="BINGO ET" style="width:48px;height:48px;border-radius:10px;" />
+      <div>
+      <strong style="font-size: 20px;">BINGO ET</strong>
+      <div id="balanceBirr" style="margin-top: 4px; font-weight: 700;">Balance: 100.00 Birr</div>
+      </div>
+    </div>
+    <select id="langSelect" aria-label="Language">
+      <option value="en">English</option>
+      <option value="am">አማርኛ (Amharic)</option>
+      <option value="om">Afaan Oromoo (Oromo)</option>
+    </select>
+  </header>
+
+  <div class="container">
+    <div class="card row" style="justify-content: space-between;">
+      <div>
+        <div id="roundLabel" style="font-weight: 700;">New round every 2 min</div>
+        <div id="modeLabel" style="color: var(--blue-dark); margin-top: 4px;">Mode: Classic Bingo (5 Lines)</div>
+      </div>
+      <div id="countdown" class="timer">02:00</div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <button class="primary" onclick="setMode(5)">Classic Bingo (5 Lines)</button>
+        <button class="secondary" onclick="setMode(3)">Short Bingo (3 Line)</button>
+      </div>
+      <div class="row" style="margin-top: 12px;">
+        <label id="cardPrompt" for="cardNum">Select Card (1 - 600):</label>
+        <input id="cardNum" type="number" min="1" max="600" value="1" />
+        <button class="primary" onclick="generateCard()">Load Card</button>
+      </div>
+      <div id="bingoGrid" class="grid-5x5"></div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top: 0; color: var(--blue-dark);">Payment Accounts — kibur shiferaw kassa</h3>
+      <p><strong>Telebirr:</strong> 0941705946, 0912341486</p>
+      <p><strong>CBE:</strong> 1000058081624</p>
+      <p><strong>BOA:</strong> 82323805</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top: 0; color: var(--blue-dark);">BINGO ET Rules</h3>
+      <ul>
+        <li>Pick any card number from 1 to 600.</li>
+        <li>Rounds cycle automatically every 2 minutes.</li>
+        <li>Win with Classic (5 lines) or Short Bingo (3 line).</li>
+        <li>All balances and payments are in Birr.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    let balanceBirr = 100.00;
+    let linesToWin = 5;
+    let remainingSec = 120;
+
+    const i18n = {
+      en: {
+        bal: (v) => `Balance: ${v.toFixed(2)} Birr`,
+        round: "New round every 2 min",
+        mode: (l) => l === 3 ? "Mode: Short Bingo (3 Line)" : "Mode: Classic Bingo (5 Lines)",
+        prompt: "Select Card (1 - 600):"
+      },
+      am: {
+        bal: (v) => `ቀሪ ሂሳብ: ${v.toFixed(2)} ብር`,
+        round: "አዲስ ጨዋታ በየ 2 ደቂቃው",
+        mode: (l) => l === 3 ? "አይነት: አጭር ቢንጎ (3 መስመር)" : "አይነት: ክላሲክ ቢንጎ (5 መስመር)",
+        prompt: "የካርድ ቁጥር ይምረጡ (1 - 600):"
+      },
+      om: {
+        bal: (v) => `Haftee: ${v.toFixed(2)} Birrii`,
+        round: "Taphni haaraan daqiiqaa 2tti",
+        mode: (l) => l === 3 ? "Haala: Biingoo Gabaabaa (Sarara 3)" : "Haala: Biingoo Idilee (Sarara 5)",
+        prompt: "Lakkoofsa Kaardii Filadhu (1 - 600):"
+      }
+    };
+
+    function updateTexts() {
+      const lang = document.getElementById("langSelect").value;
+      const t = i18n[lang] || i18n.en;
+      document.getElementById("balanceBirr").textContent = t.bal(balanceBirr);
+      document.getElementById("roundLabel").textContent = t.round;
+      document.getElementById("modeLabel").textContent = t.mode(linesToWin);
+      document.getElementById("cardPrompt").textContent = t.prompt;
+    }
+
+    function setMode(lines) {
+      linesToWin = lines;
+      updateTexts();
+    }
+
+    function generateCard() {
+      const input = document.getElementById("cardNum");
+      let cardId = parseInt(input.value, 10);
+      if (isNaN(cardId) || cardId < 1 || cardId > 600) {
+        cardId = 1;
+        input.value = 1;
+      }
+      const grid = document.getElementById("bingoGrid");
+      grid.innerHTML = "";
+      let seed = cardId * 9973;
+      const rand = () => {
+        seed = (seed * 16807) % 2147483647;
+        return seed;
+      };
+      for (let i = 0; i < 25; i++) {
+        const cell = document.createElement("div");
+        cell.className = "cell";
+        if (i === 12) {
+          cell.textContent = "FREE";
+          cell.classList.add("marked");
+        } else {
+          const colBase = (i % 5) * 15 + 1;
+          const val = colBase + (rand() % 15);
+          cell.textContent = val;
+          cell.onclick = () => cell.classList.toggle("marked");
+        }
+        grid.appendChild(cell);
+      }
+    }
+
+    setInterval(() => {
+      remainingSec = remainingSec > 0 ? remainingSec - 1 : 120;
+      const m = String(Math.floor(remainingSec / 60)).padStart(2, "0");
+      const s = String(remainingSec % 60).padStart(2, "0");
+      document.getElementById("countdown").textContent = `${m}:${s}`;
+    }, 1000);
+
+    document.getElementById("langSelect").addEventListener("change", updateTexts);
+    updateTexts();
+    generateCard();
+  </script>
+</body>
+</html>
