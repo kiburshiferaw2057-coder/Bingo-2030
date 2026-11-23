@@ -1,1 +1,31 @@
+plugins {
+    id 'com.android.application'
+}
 
+android {
+    namespace 'com.bingoet.v3'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.bingoet.v3"
+        minSdk 21
+        targetSdk 34
+        versionCode 30
+        versionName "3.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+}
