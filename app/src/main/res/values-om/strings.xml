@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BINGO ET</string>
+    <string name="version_label">BINGO ET V-3.0</string>
+    <string name="language_label">Afaan Filadhu</string>
+    <string name="lang_en">English</string>
+    <string name="lang_am">አማርኛ (Amharic)</string>
+    <string name="lang_om">Afaan Oromoo</string>
+    <string name="mode_classic">Biingoo Idilee (Sarara 5)</string>
+    <string name="mode_short_3_line">Biingoo Gabaabaa (Sarara 3)</string>
+    <string name="select_card_prompt">Lakkoofsa Kaardii Filadhu (1 - 600)</string>
+    <string name="new_round_in">Taphni haaraan daqiiqaa 2tti</string>
+    <string name="balance_birr_fmt">Haftee: %.2f Birrii</string>
+    <string name="payment_accounts_title">Herrega Kaffaltii (kibur shiferaw kassa)</string>
+    <string name="telebirr_info">Telebirr: 0941705946 / 0912341486</string>
+    <string name="cbe_info">CBE: 1000058081624</string>
+    <string name="boa_info">BOA: 82323805</string>
+    <string name="rules_title">Seera BINGO ET V-3.0</string>
+    <string name="rules_body">• Lakkoofsa kaardii 1 hanga 600 filadhu.
+• Taphni haaraan daqiiqaa 2 gidduutti jalqaba.
+• Biingoo Idilee yookaan Sarara 3 taphadhu.
+• Kaffaltiin Birriidhaan qofa mul'ata.</string>
+</resources>
