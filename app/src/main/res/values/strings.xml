@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BINGO ET</string>
+    <string name="version_label">BINGO ET V-3.0</string>
+    <string name="language_label">Language</string>
+    <string name="lang_en">English</string>
+    <string name="lang_am">አማርኛ (Amharic)</string>
+    <string name="lang_om">Afaan Oromoo (Oromo)</string>
+    <string name="mode_classic">Classic Bingo (5 Lines)</string>
+    <string name="mode_short_3_line">Short Bingo (3 Line)</string>
+    <string name="select_card_prompt">Select Card Number (1 - 600)</string>
+    <string name="new_round_in">New round every 2 min</string>
+    <string name="balance_birr_fmt">Balance: %.2f Birr</string>
+    <string name="payment_accounts_title">Payment Accounts (kibur shiferaw kassa)</string>
+    <string name="telebirr_info">Telebirr: 0941705946 / 0912341486</string>
+    <string name="cbe_info">CBE: 1000058081624</string>
+    <string name="boa_info">BOA: 82323805</string>
+    <string name="rules_title">BINGO ET V-3.0 Rules</string>
+    <string name="rules_body">• Choose any card number from 1 to 600.
+• New rounds start automatically every 2 minutes.
+• Play Classic Bingo or Short Bingo (3 Line win).
+• Balances and payments are shown in Birr only.</string>
+</resources>

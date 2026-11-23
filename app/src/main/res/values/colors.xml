@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="vivid_blue_primary">#0A58CA</color>
+    <color name="vivid_blue_dark">#063A8A</color>
+    <color name="vivid_blue_light">#3B82F6</color>
+    <color name="vivid_blue_bg">#EFF6FF</color>
+    <color name="surface_white">#FFFFFF</color>
+    <color name="text_dark">#0F172A</color>
+    <color name="text_muted">#475569</color>
+</resources>
